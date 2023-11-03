@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './RecipeInProgress.css';
 
 function IngredientList({ recipe, inProgressRecipes, recipeId }: any) {
   const [checked, setChecked] = useState<boolean[]>([]);
@@ -35,15 +36,16 @@ function IngredientList({ recipe, inProgressRecipes, recipeId }: any) {
   }, [recipeId]);
 
   return (
-    <ul>
+    <ul className="recipe-ingredient">
       {ingredientsList.map((ingredient, index): any => (
         <li key={ index }>
           <label
             data-testid={ `${index}-ingredient-step` }
             style={ { textDecoration: checked[index]
               ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
-          >
+              >
             <input
+              className="checkbox"
               type="checkbox"
               checked={ checked[index] }
               onChange={ () => handleCheckboxChange(index) }

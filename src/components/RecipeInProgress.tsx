@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { MealTypes, DrinkTypes } from '../types';
 import IngredientList from './IngredientList';
 import FavoriteShare from './FavoriteShare';
+import './RecipeInProgress.css';
 
 function RecipesInProgress() {
   const { recipeId } = useParams();
@@ -39,7 +40,7 @@ function RecipesInProgress() {
   }, [recipeId, location]);
 
   return (
-    <div>
+    <div className="container">
       {mealsInfo && (
         <div
           key={ mealsInfo.idMeal }
@@ -48,16 +49,26 @@ function RecipesInProgress() {
             src={ mealsInfo.strMealThumb }
             alt={ mealsInfo.strMeal }
             data-testid="recipe-photo"
+            className="recipe-photo"
           />
-          <p data-testid="instructions">{ mealsInfo.strInstructions }</p>
-          <h1 data-testid="recipe-title">{mealsInfo.strMeal}</h1>
-          <h2 data-testid="recipe-category">{mealsInfo.strCategory}</h2>
+          <h1 className="recipe-title" data-testid="recipe-title">{mealsInfo.strMeal}</h1>
+          <h2
+            className="recipe-category"
+            data-testid="recipe-category"
+          >
+            {mealsInfo.strCategory}
+          </h2>
           <IngredientList
             recipe={ mealsInfo }
             inProgressRecipes={ inProgressRecipes }
             recipeId={ recipeId }
-
           />
+          <p
+            className="recipe-instructions"
+            data-testid="instructions"
+          >
+            { mealsInfo.strInstructions }
+          </p>
         </div>
       )}
       {drinkInfo && (
@@ -68,8 +79,14 @@ function RecipesInProgress() {
             src={ drinkInfo.strDrinkThumb }
             alt={ drinkInfo.strDrink }
             data-testid="recipe-photo"
+            className="Styles.recipe-photo"
           />
-          <p data-testid="instructions">{ drinkInfo.strInstructions }</p>
+          <p
+            className="recipe-instructions"
+            data-testid="instructions"
+          >
+            { drinkInfo.strInstructions }
+          </p>
           <h1 data-testid="recipe-title">{drinkInfo.strDrink}</h1>
           <h2 data-testid="recipe-category">{drinkInfo.strCategory}</h2>
           <IngredientList
@@ -80,7 +97,7 @@ function RecipesInProgress() {
         </div>
       )}
       <FavoriteShare />
-      <button data-testid="finish-recipe-btn">Finalizar</button>
+      <button className="recipe-finish" data-testid="finish-recipe-btn">Finalizar</button>
     </div>
   );
 }

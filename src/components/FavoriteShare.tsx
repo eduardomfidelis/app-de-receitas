@@ -4,6 +4,7 @@ import useRequestId from '../hooks/useRequestId';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import './RecipeInProgress.css';
 
 function FavoriteShare() {
   const [isLinkCopied, setLinkCopied] = useState(false);
@@ -60,6 +61,7 @@ function FavoriteShare() {
   return (
     <div>
       <button
+        className="recipe-share"
         data-testid="share-btn"
         onClick={ copyToClipboard }
       >
@@ -72,6 +74,7 @@ function FavoriteShare() {
         <p data-testid="link-copied-message">Link copied!</p>
       )}
       <button
+        className="recipe-favorite"
         onClick={ toggleFavorite }
       >
         <img
